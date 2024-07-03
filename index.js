@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const products = require("./product");
+const port = 3000;
 const app = express();
 
-const port = 3000;
-const products = require("./product");
-
 app.use(cors());
+app.use(express.json());
+
 // products/sort/popularity
 function sortedProductRatings(rating1, rating2) {
   return rating1.rating - rating2.rating;
@@ -38,15 +39,10 @@ app.get("/products/sort/price-low-to-high", (req, res) => {
 
 // products/filter/ram
 
-app.get("/products/filter/ram", (req, res) => {
-  let sortedProducts = products.slice();
-  sortedProducts.sort(filterByRam);
-});
-
-// products/filter/ram
 function filterByRam(product, ram) {
   return product.ram === ram;
 }
+
 app.get("/products/filter/ram", (req, res) => {
   let ram = parseFloat(req.query.ram);
   let filteredProducts = products.filter((product) =>
