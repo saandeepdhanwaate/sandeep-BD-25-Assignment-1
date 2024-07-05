@@ -9,7 +9,7 @@ app.use(express.json());
 
 // products/sort/popularity
 function sortedProductRatings(rating1, rating2) {
-  return rating1.rating - rating2.rating;
+  return rating2.rating - rating1.rating;
 }
 app.get("/products/sort/popularity", (req, res) => {
   let sortedProducts = products.slice();
@@ -19,7 +19,7 @@ app.get("/products/sort/popularity", (req, res) => {
 
 // products/sort/price-high-to-low
 function sortProductPriceHighToLow(price1, price2) {
-  return price1.price - price2.price;
+  return price2.price - price2.price;
 }
 app.get("/products/sort/price-high-to-low", (req, res) => {
   let sortedProducts = products.slice();
@@ -29,7 +29,7 @@ app.get("/products/sort/price-high-to-low", (req, res) => {
 
 // products/sort/price-low-to-high
 function sortProductPriceLowToHigh(price1, price2) {
-  return price2.price - price1.price;
+  return price1.price - price2.price;
 }
 app.get("/products/sort/price-low-to-high", (req, res) => {
   let sortedProducts = products.slice();
